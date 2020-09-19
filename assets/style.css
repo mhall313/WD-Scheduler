@@ -32,6 +32,11 @@ textarea{
   margin-bottom: 5px;
 }
 
+.center{
+  text-align: center;
+  border-radius: 15px;
+}
+
 .time-block{
   text-align: center;
   border-radius: 15px;

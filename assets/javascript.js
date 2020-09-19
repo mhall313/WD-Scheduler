@@ -1,20 +1,4 @@
-//Objectives:
-//Current day and time displayed at the top
-//Color code time blocks based on what time it is
-//Enter and store event to local storage once save is clicked
-
-//BONUS:
-//I added a goals section
-//save checked box to local storage if checked
-//save goals to local storage when entered
-
-  
-//this gives time in format to use if/then for past present and future
-var time = new Date();
-console.log(
-    time.toLocaleString('en-US', { hour: 'numeric', hour12: true })
-);  
-
+//Arrays to display date as human legible
 var dt = new Date();
 var weekday = new Array(7);
 weekday[0] = "Sunday";
@@ -40,10 +24,43 @@ month[10] = "Nov";
 month[11] = "Dec";
 
 
-//Saturday Sep 19, 2020
+//Weekday and Calendar Month Date, Year
 var d = weekday[dt.getDay()];
 var calD = month[dt.getMonth()] + " " + dt.getDate() + ", " + dt.getFullYear();
-
 $("#currentDay").html(d);
 $("#currentDate").html(calD);
+
+//Objectives:
+//Color code time blocks based on what time it is
+
+//Variable time in format matching html to use in if/then logic to color code for past, present and future events
+var time = new Date();
+var nowAmPm = time.toLocaleString('en-US', { hour: 'numeric', hour12: true })
+
+//Function run upon load to color code rows for past, present and future
+function colorCode(){
+    //add class to every th that equals the text content
+    $(".row").addClass();
+
+    // if(nowAmPm === row class){
+    //     time-block . addClass present
+    // }
+    // else if (nowAmPm < row class){
+    //     time-block . addclass future
+    // }
+    // else{
+    //     time-clock . addClass past
+    // }
+}    
+colorCode();
+
+
+
+
+//Enter and store event to local storage once save is clicked
+
+//BONUS:
+//I added a goals section
+//save checked box to local storage if checked
+//save goals to local storage when entered
 
