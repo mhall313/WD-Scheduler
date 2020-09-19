@@ -24,15 +24,158 @@
 
   <body>
     <header class="jumbotron">
-      <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work day</p>
-      <p id="currentDay" class="lead"></p>
+      <h1 class="display-3">Daily Work Planner</h1>
+      <p class="lead description">Schedule your work day and your 5 key goals</p>
+      <p class="time-block">Display the time</p>
+      <p id="currentDay" class="lead">Display the Day</p>
     </header>
     <div class="container">
       <!-- Timeblocks go here -->
+      <table class="table table-center nine-five">
+        <!--Table Headers-->
+        <thead>
+          <tr>
+            <th scope="col" width="20%" class="time-block"><div>Time</div></th>
+            <th scope="col" width="70%"><div>Event</div></th>
+            <th scope="col" width="10%" class="time-block"><div>Save</div></th>
+          </tr>
+        </thead>
+        <!--9AM-->
+        <tbody>
+          <tr>
+            <th class="align-middle time-block">9 AM</th>
+            <td>
+              <textarea class="form-control" id="na" rows="1"></textarea>
+            </td>
+            <td class="align-middle saveBtn">
+              <i class="fas fa-save"></i>
+            </td>
+          </tr>
+        </tbody>
+        <!--10AM-->
+        <tbody>
+          <tr>
+            <th class="align-middle time-block">10 AM</th>
+            <td>
+              <textarea class="form-control" id="na" rows="1"></textarea>
+            </td>
+            <td class="align-middle saveBtn">
+              <i class="fas fa-save"></i>
+            </td>
+          </tr>
+        </tbody>
+        <!--11AM-->
+        <tbody>
+          <tr>
+            <th class="align-middle time-block">11 AM</th>
+            <td>
+              <textarea class="form-control" id="na" rows="1"></textarea>
+            </td>
+            <td class="align-middle saveBtn">
+              <i class="fas fa-save"></i>
+            </td>
+          </tr>
+        </tbody>
+        <!--12PM-->
+        <tbody>
+          <tr>
+            <th class="align-middle time-block">12 PM</th>
+            <td>
+              <textarea class="form-control" id="na" rows="1"></textarea>
+            </td>
+            <td class="align-middle saveBtn">
+              <i class="fas fa-save"></i>
+            </td>
+          </tr>
+        </tbody>
+        <!--1PM-->
+        <tbody>
+          <tr>
+            <th class="align-middle time-block">1 PM</th>
+            <td>
+              <textarea class="form-control" id="na" rows="1"></textarea>
+            </td>
+            <td class="align-middle saveBtn">
+              <i class="fas fa-save"></i>
+            </td>
+          </tr>
+        </tbody>
+        <!--2PM-->
+        <tbody>
+          <tr>
+            <th class="align-middle time-block">2 PM</th>
+            <td>
+              <textarea class="form-control" id="na" rows="1"></textarea>
+            </td>
+            <td class="align-middle saveBtn">
+              <i class="fas fa-save"></i>
+            </td>
+          </tr>
+        </tbody>
+        <!--3PM-->
+        <tbody>
+          <tr>
+            <th class="align-middle time-block">3 PM</th>
+            <td>
+              <textarea class="form-control" id="na" rows="1"></textarea>
+            </td>
+            <td class="align-middle saveBtn">
+              <i class="fas fa-save"></i>
+            </td>
+          </tr>
+        </tbody>
+        <!--4PM-->
+        <tbody>
+          <tr>
+            <th class="align-middle time-block">4 PM</th>
+            <td>
+              <textarea class="form-control" id="na" rows="1"></textarea>
+            </td>
+            <td class="align-middle saveBtn">
+              <i class="fas fa-save"></i>
+            </td>
+          </tr>
+        </tbody>
+        <!--5PM-->
+        <tbody>
+          <tr>
+            <th class="align-middle time-block">5 PM</th>
+            <td>
+              <textarea class="form-control" id="na" rows="1"></textarea>
+            </td>
+            <td class="align-middle saveBtn">
+              <i class="fas fa-save"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <!--Goals Table-->
+      <table class="table table-center goals">
+        <thead>
+          <tr>
+            <th scope="col" width="20%" class="time-block"><i class="fas fa-check-square"></i></th>
+            <th scope="col" width="80%"><div>Goals</div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="align-middle time-block">
+              <input type="checkbox" class="form-check-input">
+            </th>
+            <td>
+              <textarea class="form-control" rows="1"></textarea>
+            </td>
+          </tr>
+        </tbody>
+        
+      </table>
     </div>
-
+    <!--JQuery Script-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!--Moment.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!--My Script-->
+    <script src="assets/javascript.js"></script>
   </body>
 </html>
