@@ -19,16 +19,29 @@ textarea{
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.unique-display{
+  font-size:36px;
 }
 
 .description{
   white-space: pre-wrap;
+  margin-bottom: 5px;
 }
 
 .time-block{
   text-align: center;
   border-radius: 15px;
 }
+
+#currentDate, #currentDay{
+  border-radius:0;
+  padding: 0;
+  margin-bottom: 2px;
+} 
 
 .row {
   white-space: pre-wrap;
