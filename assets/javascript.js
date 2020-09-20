@@ -1,4 +1,7 @@
-//Arrays to display date as human legible
+//To remove any potential syncing issues on load
+$(document).ready(function(){
+
+//Arrays to iterate through for days, month and times
 var dt = new Date();
 var weekday = new Array(7);
 weekday[0] = "Sunday";
@@ -17,11 +20,22 @@ month[3] = "Apr";
 month[4] = "May";
 month[5] = "Jun";
 month[6] = "Jul";
-month[7] = "Augt";
+month[7] = "Aug";
 month[8] = "Sep";
 month[9] = "Oct";
 month[10] = "Nov";
 month[11] = "Dec";
+
+var hours = new Array(9);
+hours[0] = "9 AM";
+hours[1] = "10 AM";
+hours[2] = "11 AM";
+hours[3] = "12 PM";
+hours[4] = "1 PM";
+hours[5] = "2 PM";
+hours[6] = "3 PM";
+hours[7] = "4 PM";
+hours[8] = "5 PM";
 
 
 //Weekday and Calendar Month Date, Year
@@ -37,23 +51,34 @@ $("#currentDate").html(calD);
 var time = new Date();
 var nowAmPm = time.toLocaleString('en-US', { hour: 'numeric', hour12: true })
 
+//For each element with class "table-row" assign data attribute hour cooresponding to the index of the variable hours
+function rowHour(){
+    var i = 0;
+    $.each($(".table-row"),function(){
+        $(this).attr("data-hour",hours[i]);
+        i ++;
+    })
+}
 //Function run upon load to color code rows for past, present and future
 function colorCode(){
-    //add class to every th that equals the text content
-    $(".row").addClass();
-
-    // if(nowAmPm === row class){
-    //     time-block . addClass present
-    // }
-    // else if (nowAmPm < row class){
-    //     time-block . addclass future
-    // }
-    // else{
-    //     time-clock . addClass past
-    // }
+    rowHour();
+    $(".table-row").each(function(){
+        var plannerAmPm = $(this).data("hour");
+        if(plannerAmPm === nowAmPm){
+            console.log("equal");
+        }
+        else if (plannerAmPm > nowAmPm){
+            console.log("greater than" + plannerAmPm);
+        }
+        else{
+            console.log("else");
+        }
+        
+    });
+    //once this bs fucking works add in conditionals in the .each to remove and then add classes
+      
 }    
 colorCode();
-
 
 
 
@@ -63,4 +88,4 @@ colorCode();
 //I added a goals section
 //save checked box to local storage if checked
 //save goals to local storage when entered
-
+});
