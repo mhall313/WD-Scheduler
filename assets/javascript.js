@@ -45,6 +45,9 @@ var calD = month[dt.getMonth()] + " " + dt.getDate() + ", " + dt.getFullYear();
 $("#currentDay").html(d);
 $("#currentDate").html(calD);
 
+//initialize saved events
+init();
+
 //For each element with class "table-row" assign data attribute hour cooresponding to the index of the variable hours
 function rowHour(){
     var i = 0;
@@ -76,13 +79,40 @@ function colorCode(){
             $(this).removeClass("present");
         }
     });
-      
+    console.log("is the interval working?");
 }    
-colorCode();
+//Timer/Interval to rerun colorCode so that appropriate hour is highlighted when the hour changes
+function whatHour(){
+    colorCode();
+    setInterval(function(){colorCode();},60000);
+}
+whatHour();
 
+//Save calendar item to local storage (once save button is clicked or enter key is pressed)
+$(".saveBtn").click(function(){
+    // var plannerTime = $(this).parent.data("hour");
+    var eventName = $(this).parent("tr").find("textarea").val();
+    localStorage.setItem("something or other", eventName); //doesnt work yet
+});
 
+function renderEvents(){
+    //i need this to know which form to which saved item. use another for each
+    //$(".form-control").value = localStorage.getItem("");
+    $(".table-row").each(function(){
+        var calEvent = $(this).find("textarea");
+        calEvent.val("something"); // i need to change something to the previously saved items
+        
 
-//Enter and store event to local storage once save is clicked
+    });
+}
+
+function init(){ //doesn't work yet
+    // var storedEvents = JSON.parse(localStorage.getItem("something or other"));
+    // if (storedEvents !== null){
+    //     "something or other" = storedEvents;
+    // }
+    renderEvents();
+}
 
 //BONUS:
 //I added a goals section
