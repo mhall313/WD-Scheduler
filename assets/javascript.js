@@ -1,8 +1,9 @@
 //To remove any potential syncing issues on load
 $(document).ready(function(){
 
-//Arrays to iterate through for days, month and times
+//Variable for current date
 var dt = new Date();
+//Arrays to iterate through for days, month and times
 var weekday = new Array(7);
 weekday[0] = "Sunday";
 weekday[1] = "Monday";
@@ -27,15 +28,15 @@ month[10] = "Nov";
 month[11] = "Dec";
 
 var hours = new Array(9);
-hours[0] = "9 AM";
-hours[1] = "10 AM";
-hours[2] = "11 AM";
-hours[3] = "12 PM";
-hours[4] = "1 PM";
-hours[5] = "2 PM";
-hours[6] = "3 PM";
-hours[7] = "4 PM";
-hours[8] = "5 PM";
+hours[0] = "9";
+hours[1] = "10";
+hours[2] = "11";
+hours[3] = "12";
+hours[4] = "13";
+hours[5] = "14";
+hours[6] = "15";
+hours[7] = "16";
+hours[8] = "17";
 
 
 //Weekday and Calendar Month Date, Year
@@ -43,13 +44,6 @@ var d = weekday[dt.getDay()];
 var calD = month[dt.getMonth()] + " " + dt.getDate() + ", " + dt.getFullYear();
 $("#currentDay").html(d);
 $("#currentDate").html(calD);
-
-//Objectives:
-//Color code time blocks based on what time it is
-
-//Variable time in format matching html to use in if/then logic to color code for past, present and future events
-var time = new Date();
-var nowAmPm = time.toLocaleString('en-US', { hour: 'numeric', hour12: true })
 
 //For each element with class "table-row" assign data attribute hour cooresponding to the index of the variable hours
 function rowHour(){
@@ -62,20 +56,26 @@ function rowHour(){
 //Function run upon load to color code rows for past, present and future
 function colorCode(){
     rowHour();
+    var nowTime = dt.getHours();
+
     $(".table-row").each(function(){
-        var plannerAmPm = $(this).data("hour");
-        if(plannerAmPm === nowAmPm){
-            console.log("equal");
+        var plannerTime = $(this).data("hour");
+        if(plannerTime === nowTime){
+            $(this).removeClass("past");
+            $(this).removeClass("future");
+            $(this).addClass("present");
         }
-        else if (plannerAmPm > nowAmPm){
-            console.log("greater than" + plannerAmPm);
+        else if (plannerTime > nowTime){
+            $(this).removeClass("past");
+            $(this).addClass("future");
+            $(this).removeClass("present");
         }
         else{
-            console.log("else");
+            $(this).addClass("past");
+            $(this).removeClass("future");
+            $(this).removeClass("present");
         }
-        
     });
-    //once this bs fucking works add in conditionals in the .each to remove and then add classes
       
 }    
 colorCode();
