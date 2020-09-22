@@ -61,7 +61,8 @@ function rowHour(){
 function colorCode(){
     rowHour();
     init();
-    var nowTime = dt.getHours();
+    var nowDt = new Date();
+    var nowTime = nowDt.getHours();
 
     $(".table-row").each(function(){
         var plannerTime = $(this).data("hour");
@@ -85,7 +86,11 @@ function colorCode(){
 //Timer/Interval to rerun colorCode so that appropriate hour is highlighted when the hour changes
 function whatHour(){
     colorCode();
-    setInterval(function(){colorCode();},60000);
+    setInterval(function(){
+        colorCode();
+        console.log("its a me mario")
+    },60000);
+    
 }
 whatHour();
 
