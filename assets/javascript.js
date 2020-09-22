@@ -96,7 +96,13 @@ $(".saveBtn").click(function(event){
     var plannerTime = $(this).parent("tr").data("hour");
     var eventName = $(this).parent("tr").find("textarea").val();
     localStorage.setItem(plannerTime,eventName);
-    //need to push variables into some array or object for conditionals in renderEvents
+    //need to push variables into some object for conditionals in renderEvent
+    var calEvent = {
+        plannerTime: plannerTime,
+        eventName: eventName
+    }
+
+    calEvents.push(calEvent);
 
     storeEvents();
     renderEvents();
@@ -107,9 +113,14 @@ function renderEvents(){
     $.each($(".table-row"),function(){
         var rowHour = $(this).data("hour");
         var calEventBox = $(this).find("textarea");
-        //i want to find the hour/key/whatever in calEvents equal to rowHour and put that text into calEventBox
-        //calEventBox.val("the event text that cooresponds with rowHour");
-    
+        var calEvent = calEvents.find(event => {
+            if(event.plannerTime === rowHour){
+                return event;
+            } 
+        })
+        if(calEvent != null ){
+            calEventBox.val(calEvent.eventName);
+        }
     });    
 }
 
@@ -117,16 +128,11 @@ function storeEvents(){
     localStorage.setItem("calEvents", JSON.stringify(calEvents));
 }
 
-function init(){ //doesn't work yet
+function init(){
     var storedEvents = JSON.parse(localStorage.getItem("calEvents"));
     if (storedEvents !== null){
         calEvents = storedEvents;
     }
     renderEvents();
 }
-
-//BONUS:
-//I added a goals section
-//save checked box to local storage if checked
-//save goals to local storage when entered
 });
