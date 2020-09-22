@@ -46,7 +46,8 @@ $("#currentDay").html(d);
 $("#currentDate").html(calD);
 
 //initialize saved events
-init();
+var calEvents = [];
+//window.localStorage.clear(); //for testing
 
 //For each element with class "table-row" assign data attribute hour cooresponding to the index of the variable hours
 function rowHour(){
@@ -59,6 +60,7 @@ function rowHour(){
 //Function run upon load to color code rows for past, present and future
 function colorCode(){
     rowHour();
+    init();
     var nowTime = dt.getHours();
 
     $(".table-row").each(function(){
@@ -79,7 +81,6 @@ function colorCode(){
             $(this).removeClass("present");
         }
     });
-    console.log("is the interval working?");
 }    
 //Timer/Interval to rerun colorCode so that appropriate hour is highlighted when the hour changes
 function whatHour(){
@@ -89,28 +90,38 @@ function whatHour(){
 whatHour();
 
 //Save calendar item to local storage (once save button is clicked or enter key is pressed)
-$(".saveBtn").click(function(){
-    // var plannerTime = $(this).parent.data("hour");
+$(".saveBtn").click(function(event){
+    event.preventDefault();
+
+    var plannerTime = $(this).parent("tr").data("hour");
     var eventName = $(this).parent("tr").find("textarea").val();
-    localStorage.setItem("something or other", eventName); //doesnt work yet
+    localStorage.setItem(plannerTime,eventName);
+    //need to push variables into some array or object for conditionals in renderEvents
+
+    storeEvents();
+    renderEvents();
 });
 
 function renderEvents(){
-    //i need this to know which form to which saved item. use another for each
-    //$(".form-control").value = localStorage.getItem("");
-    $(".table-row").each(function(){
-        var calEvent = $(this).find("textarea");
-        calEvent.val("something"); // i need to change something to the previously saved items
-        
+    //Render event name inside of form feild - for every row find the event with corresponding index and populate form
+    $.each($(".table-row"),function(){
+        var rowHour = $(this).data("hour");
+        var calEventBox = $(this).find("textarea");
+        //i want to find the hour/key/whatever in calEvents equal to rowHour and put that text into calEventBox
+        //calEventBox.val("the event text that cooresponds with rowHour");
+    
+    });    
+}
 
-    });
+function storeEvents(){
+    localStorage.setItem("calEvents", JSON.stringify(calEvents));
 }
 
 function init(){ //doesn't work yet
-    // var storedEvents = JSON.parse(localStorage.getItem("something or other"));
-    // if (storedEvents !== null){
-    //     "something or other" = storedEvents;
-    // }
+    var storedEvents = JSON.parse(localStorage.getItem("calEvents"));
+    if (storedEvents !== null){
+        calEvents = storedEvents;
+    }
     renderEvents();
 }
 
